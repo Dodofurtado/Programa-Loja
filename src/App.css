@@ -128,9 +128,13 @@ body {
   user-select: none;
   word-break: break-word;
   overflow-wrap: break-word;
-  white-space: normal;
-  width: 100%;
+  hyphens: auto;
+  max-width: 100%;
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
 }
 
 .guest-item:hover {
@@ -241,68 +245,90 @@ body {
 /* Mobile */
 @media (max-width: 768px) {
   .app {
-    padding: 0.5rem;
+    padding: 0;
+    max-width: 100%;
   }
 
   .app-header {
-    margin: -0.5rem -0.5rem 0.5rem -0.5rem;
-    padding: 0.25rem;
+    margin: 0;
+    padding: 0.5rem 0;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .header-content {
     flex-direction: column;
-    gap: 0.5rem;
-    padding: 0.5rem;
-    width: 95%;
+    gap: 0.25rem;
+    padding: 0.25rem;
+    width: 100%;
+    max-width: 100%;
     margin: 0 auto;
+    box-sizing: border-box;
   }
 
   .stats {
-    width: 100%;
+    width: 95%;
     display: flex;
     justify-content: space-between;
     gap: 0.25rem;
     font-size: 0.75rem;
     border-bottom: 1px solid var(--border-color);
-    padding-bottom: 0.5rem;
-    overflow-x: hidden;
+    padding: 0.25rem 0 0.5rem 0;
+    margin: 0 auto;
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
   }
 
   .search-container {
     width: 95%;
     max-width: none;
-    margin: 0 auto;
+    margin: 0.25rem auto;
   }
 
   .search-input {
-    padding: 0.35rem;
+    padding: 0.35rem 0.5rem;
     font-size: 0.9rem;
-    width: 100%;
-    box-sizing: border-box;
+    height: 2rem;
+    border-radius: 4px;
   }
 
   .tables-container {
     grid-template-columns: 1fr;
     gap: 0.5rem;
-    padding: 0;
+    padding: 0.5rem 0;
     width: 100%;
-    margin: 0 auto;
+    margin: 0;
   }
 
   .table-group {
     padding: 0.75rem;
     width: 95%;
-    margin: 0 auto;
+    margin: 0 auto 0.5rem auto;
     box-sizing: border-box;
   }
 
-  .import-container {
-    padding: 1rem;
+  .table-title {
+    margin: 0 0 0.75rem 0;
+    padding-bottom: 0.25rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.25rem;
   }
 
-  .file-input-label {
-    width: 90%;
-    padding: 0.75rem 1rem;
+  .guest-list {
+    margin: 0;
+    padding: 0;
+  }
+
+  .guest-item {
+    padding: 0.5rem;
+    margin-bottom: 0.35rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
   }
 }
 
