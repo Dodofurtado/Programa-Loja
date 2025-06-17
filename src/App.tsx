@@ -60,6 +60,7 @@ function App() {
   const totalGuests = guests.length;
   const presentGuests = guests.filter(guest => guest.status === 'present').length;
   const notComingGuests = guests.filter(guest => guest.status === 'notcoming').length;
+  const isMobile = window.innerWidth <= 768;
 
 
   return (
@@ -74,9 +75,9 @@ function App() {
           <header className="app-header">
             <div className="header-content">
               <div className="stats">
-                <span className="status-count present">✅ Presentes: {presentGuests}</span>
-                <span className="status-count notcoming">❌ Ausentes: {notComingGuests}</span>
-                <span className="total-count">Total: {totalGuests}</span>
+                <span className="status-count present">✅{presentGuests}</span>
+                <span className="status-count notcoming">❌{notComingGuests}</span>
+                <span className="total-count">T:{totalGuests}</span>
               </div>
               <div className="search-container">
                 <input
