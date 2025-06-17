@@ -60,7 +60,6 @@ function App() {
   const totalGuests = guests.length;
   const presentGuests = guests.filter(guest => guest.status === 'present').length;
   const notComingGuests = guests.filter(guest => guest.status === 'notcoming').length;
-  const isMobile = window.innerWidth <= 768;
 
 
   return (
