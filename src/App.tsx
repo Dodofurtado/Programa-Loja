@@ -60,7 +60,7 @@ function App() {
   const totalGuests = guests.length;
   const presentGuests = guests.filter(guest => guest.status === 'present').length;
   const notComingGuests = guests.filter(guest => guest.status === 'notcoming').length;
-  const pendingGuests = totalGuests - presentGuests - notComingGuests;
+
 
   return (
     <div className="app">
@@ -72,22 +72,21 @@ function App() {
       ) : (
         <>
           <header className="app-header">
-            <h1>Controle de Presença</h1>
-            <div className="search-container">
-              <input
-                type="text"
-                placeholder="🔍 Buscar convidado..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="search-input"
-              />
-            </div>
-            <div className="stats">
-              <span className="status-count present">✅ Presentes: {presentGuests}</span>
-              <span className="status-count notcoming">❌ Não virão: {notComingGuests}</span>
-              <span>Pendentes: {pendingGuests}</span>
-              <span>Total: {totalGuests}</span>
-              <span>Total de Convidados: {totalGuests}</span>
+            <div className="header-content">
+              <div className="search-container">
+                <input
+                  type="text"
+                  placeholder="🔍 Buscar convidado..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="search-input"
+                />
+              </div>
+              <div className="stats">
+                <span className="status-count present">✅{presentGuests}</span>
+                <span className="status-count notcoming">❌{notComingGuests}</span>
+                <span className="total-count">Total: {totalGuests}</span>
+              </div>
             </div>
           </header>
           <div className="tables-container">
