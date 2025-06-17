@@ -20,6 +20,8 @@ body {
 .app {
   min-height: 100vh;
   padding: 1rem;
+  margin: 0 auto;
+  max-width: 1280px;
 }
 
 .import-container {
@@ -29,6 +31,8 @@ body {
   justify-content: center;
   min-height: 80vh;
   text-align: center;
+  margin: 0 auto;
+  max-width: 600px;
 }
 
 .file-input-label {
@@ -39,6 +43,9 @@ body {
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s;
+  width: 80%;
+  max-width: 300px;
+  text-align: center;
 }
 
 .file-input-label:hover {
@@ -61,8 +68,12 @@ body {
 
 .header-content {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
 }
 
 .stats {
@@ -76,9 +87,10 @@ body {
 
 .tables-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1rem;
-  padding: 1rem 0;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding: 1rem;
+  margin: 0 auto;
 }
 
 .table-group {
@@ -86,6 +98,8 @@ body {
   border-radius: 8px;
   padding: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+  min-width: 0;
 }
 
 .table-title {
@@ -127,6 +141,8 @@ body {
 }
 
 .search-container {
+  flex: 1;
+  max-width: 400px;
   margin: 0;
   display: flex;
   justify-content: center;
@@ -134,10 +150,10 @@ body {
 
 .search-input {
   width: 100%;
-  padding: 0.5rem;
+  padding: 0.75rem 1rem;
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  font-size: 0.9rem;
+  font-size: 1rem;
   transition: border-color 0.3s;
 }
 
@@ -207,6 +223,14 @@ body {
   margin-left: 0.5rem;
 }
 
+/* Tablets */
+@media (max-width: 1024px) {
+  .tables-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
 @media (max-width: 768px) {
   .app {
     padding: 0.5rem;
@@ -234,11 +258,24 @@ body {
   .tables-container {
     grid-template-columns: 1fr;
     gap: 0.5rem;
-    padding: 0.25rem 0;
+    padding: 0.25rem;
+    width: 95%;
+    margin: 0 auto;
   }
 
   .table-group {
     padding: 0.75rem;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .import-container {
+    padding: 1rem;
+  }
+
+  .file-input-label {
+    width: 90%;
+    padding: 0.75rem 1rem;
   }
 }
 
