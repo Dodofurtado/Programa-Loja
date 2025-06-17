@@ -74,9 +74,9 @@ function App() {
           <header className="app-header">
             <div className="header-content">
               <div className="stats">
-                <span className="status-count present">✅{presentGuests}</span>
-                <span className="status-count notcoming">❌{notComingGuests}</span>
-                <span className="total-count">T:{totalGuests}</span>
+                <span className="status-count present">{presentGuests}</span>
+                <span className="status-count notcoming">{notComingGuests}</span>
+                <span className="total-count">{totalGuests}</span>
               </div>
               <div className="search-container">
                 <input
