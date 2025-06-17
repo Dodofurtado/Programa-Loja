@@ -187,10 +187,18 @@ body {
   border-color: var(--primary-color);
 }
 
-.status-count {
+.app-header .stats {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.app-header .status-count {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
+  white-space: nowrap;
 }
 
 .status-count.present {
@@ -198,12 +206,7 @@ body {
 }
 
 .status-count.notcoming {
-  color: #dc3545;
-}
-
-.table-title .status-count {
-  font-size: 0.85em;
-  margin-left: 0.5rem;
+  color: var(--danger-color);
 }
 
 /* Tablets */
@@ -237,7 +240,7 @@ body {
     box-sizing: border-box;
   }
 
-  .stats {
+  .app-header .stats {
     width: 95%;
     display: flex;
     justify-content: flex-start;
@@ -252,21 +255,25 @@ body {
     box-sizing: border-box;
   }
 
-  .stats::-webkit-scrollbar {
+  .app-header .stats::-webkit-scrollbar {
     display: none;
   }
 
-  .search-container {
-    width: 95%;
-    max-width: none;
-    margin: 0.25rem auto;
+  .app-header .status-count::before {
+    content: attr(data-label);
+    margin-right: 0.25rem;
   }
 
-  .search-input {
-    padding: 0.35rem 0.5rem;
-    font-size: 0.9rem;
-    height: 2rem;
-    border-radius: 4px;
+  .app-header .status-count.present::before {
+    content: "✅ Presente: ";
+  }
+
+  .app-header .status-count.notcoming::before {
+    content: "❌ Ausentes: ";
+  }
+
+  .app-header .total-count::before {
+    content: "Total: ";
   }
 
   .tables-container {
@@ -322,6 +329,16 @@ body {
 
   .total-count::before {
     content: "Total: ";
+  }
+
+  /* Restaurando o estilo original para as mesas */
+  .table-group .status-count::before {
+    content: none;
+  }
+
+  .table-group .status-count {
+    font-size: 0.85em;
+    margin-left: 0.5rem;
   }
 }
 
