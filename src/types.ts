@@ -1,7 +1,7 @@
 export interface Guest {
   name: string;
   table: string | number;
-  isPresent: boolean;
+  status: 'present' | 'notcoming' | 'pending';
 }
 
 export interface TableGroup {

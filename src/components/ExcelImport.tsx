@@ -20,10 +20,9 @@ export const ExcelImport = ({ onGuestsImported }: ExcelImportProps) => {
       const worksheet = workbook.Sheets[sheetName];
       const jsonData = XLSX.utils.sheet_to_json(worksheet) as Array<{ [key: string]: string | number }>;
 
-      const guests: Guest[] = jsonData.map(row => ({
-        name: String(row['Nome'] || row['NOME'] || row['nome'] || row['A'] || ''),
+      const guests: Guest[] = jsonData.map(row => ({        name: String(row['Nome'] || row['NOME'] || row['nome'] || row['A'] || ''),
         table: row['Mesa'] || row['MESA'] || row['mesa'] || row['B'] || '',
-        isPresent: false
+        status: 'pending'
       }));
 
       onGuestsImported(guests);

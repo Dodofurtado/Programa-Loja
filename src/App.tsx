@@ -6,16 +6,28 @@ import './App.css';
 
 function App() {
   const [guests, setGuests] = useState<Guest[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleGuestsImported = useCallback((importedGuests: Guest[]) => {
-    setGuests(importedGuests);
+    const guestsWithStatus = importedGuests.map(guest => ({
+      ...guest,
+      status: 'pending' as const
+    }));
+    setGuests(guestsWithStatus);
   }, []);
 
   const handleGuestClick = useCallback((clickedGuest: Guest) => {
     setGuests(prevGuests => 
       prevGuests.map(guest => 
         guest.name === clickedGuest.name && guest.table === clickedGuest.table
-          ? { ...guest, isPresent: !guest.isPresent }
+          ? { 
+              ...guest, 
+              status: guest.status === 'pending' 
+                ? 'present' 
+                : guest.status === 'present' 
+                  ? 'notcoming' 
+                  : 'pending'
+            }
           : guest
       )
     );
