@@ -16,11 +16,7 @@ function App() {
     setGuests(guestsWithStatus);
   }, []);
 
-  const filteredGuests = useMemo(() => {
-    if (!searchQuery) return guests;
-    const query = searchQuery.toLowerCase();
-    return guests.filter(guest => guest.name.toLowerCase().includes(query));
-  }, [guests, searchQuery]);
+
 
   const handleGuestClick = useCallback((clickedGuest: Guest) => {
     setGuests(prevGuests => 
