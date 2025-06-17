@@ -72,8 +72,10 @@ body {
   justify-content: space-between;
   gap: 1rem;
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   padding: 0.5rem 1rem;
+  flex-wrap: wrap;
 }
 
 .stats {
@@ -242,7 +244,24 @@ body {
   }
 
   .header-content {
-    gap: 0.25rem;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .stats {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+  }
+
+  .search-container {
+    width: 100%;
+    max-width: none;
   }
 
   .search-input {
@@ -250,23 +269,19 @@ body {
     font-size: 0.9rem;
   }
 
-  .stats {
-    gap: 0.75rem;
-    font-size: 0.85rem;
-  }
-
   .tables-container {
     grid-template-columns: 1fr;
     gap: 0.5rem;
-    padding: 0.25rem;
-    width: 95%;
+    padding: 0;
+    width: 100%;
     margin: 0 auto;
   }
 
   .table-group {
     padding: 0.75rem;
-    width: 100%;
+    width: 95%;
     margin: 0 auto;
+    box-sizing: border-box;
   }
 
   .import-container {

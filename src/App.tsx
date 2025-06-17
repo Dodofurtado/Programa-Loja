@@ -73,6 +73,11 @@ function App() {
         <>
           <header className="app-header">
             <div className="header-content">
+              <div className="stats">
+                <span className="status-count present">✅ Presentes: {presentGuests}</span>
+                <span className="status-count notcoming">❌ Ausentes: {notComingGuests}</span>
+                <span className="total-count">Total: {totalGuests}</span>
+              </div>
               <div className="search-container">
                 <input
                   type="text"
@@ -81,11 +86,6 @@ function App() {
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="search-input"
                 />
-              </div>
-              <div className="stats">
-                <span className="status-count present">✅{presentGuests}</span>
-                <span className="status-count notcoming">❌{notComingGuests}</span>
-                <span className="total-count">Total: {totalGuests}</span>
               </div>
             </div>
           </header>
