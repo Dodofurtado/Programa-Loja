@@ -16,6 +16,12 @@ function App() {
     setGuests(guestsWithStatus);
   }, []);
 
+  const filteredGuests = useMemo(() => {
+    if (!searchQuery) return guests;
+    const query = searchQuery.toLowerCase();
+    return guests.filter(guest => guest.name.toLowerCase().includes(query));
+  }, [guests, searchQuery]);
+
   const handleGuestClick = useCallback((clickedGuest: Guest) => {
     setGuests(prevGuests => 
       prevGuests.map(guest => 
@@ -56,7 +62,9 @@ function App() {
   }, [guests]);
 
   const totalGuests = guests.length;
-  const presentGuests = guests.filter(guest => guest.isPresent).length;
+  const presentGuests = guests.filter(guest => guest.status === 'present').length;
+  const notComingGuests = guests.filter(guest => guest.status === 'notcoming').length;
+  const pendingGuests = totalGuests - presentGuests - notComingGuests;
 
   return (
     <div className="app">
@@ -69,20 +77,44 @@ function App() {
         <>
           <header className="app-header">
             <h1>Controle de Presença</h1>
+            <div className="search-container">
+              <input
+                type="text"
+                placeholder="🔍 Buscar convidado..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="search-input"
+              />
+            </div>
             <div className="stats">
-              <span>Presentes: {presentGuests}</span>
-              <span>Ausentes: {totalGuests - presentGuests}</span>
+              <span className="status-count present">✅ Presentes: {presentGuests}</span>
+              <span className="status-count notcoming">❌ Não virão: {notComingGuests}</span>
+              <span>Pendentes: {pendingGuests}</span>
+              <span>Total: {totalGuests}</span>
               <span>Total de Convidados: {totalGuests}</span>
             </div>
           </header>
           <div className="tables-container">
-            {tableGroups.map(tableGroup => (
-              <TableComponent
-                key={tableGroup.table}
-                tableGroup={tableGroup}
-                onGuestClick={handleGuestClick}
-              />
-            ))}
+            {tableGroups
+              .filter(group => 
+                group.guests.some(guest => 
+                  !searchQuery || guest.name.toLowerCase().includes(searchQuery.toLowerCase())
+                )
+              )
+              .map(tableGroup => ({
+                ...tableGroup,
+                guests: tableGroup.guests.filter(guest =>
+                  !searchQuery || guest.name.toLowerCase().includes(searchQuery.toLowerCase())
+                )
+              }))
+              .map(tableGroup => (
+                <TableComponent
+                  key={tableGroup.table}
+                  tableGroup={tableGroup}
+                  onGuestClick={handleGuestClick}
+                />
+              ))
+            }
           </div>
         </>
       )}
